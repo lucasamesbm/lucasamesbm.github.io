@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Láurea Seguros – Especialistas em Seguros e Consórcios</title>
+    <link rel="icon" type="image/png" href="fotos/minilogo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
@@ -59,6 +60,12 @@
             text-decoration: none;
             cursor: pointer;
             transition: all 0.3s ease;
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        .btn.show {
+            animation: surgirDoNada 0.6s ease-out forwards;
         }
         
         .btn:hover {
@@ -100,7 +107,17 @@
             justify-content: space-between;
             align-items: center;
         }
-        
+
+        #mainNav a {
+            transition: transform 0.2s ease, color 0.2s ease;
+            display: inline-block; /* Necessário para o transform funcionar corretamente em links */
+        }
+
+        #mainNav a:hover {
+            color: var(--primary-dark);
+            transform: translateY(-2.5px);
+        }
+
         .logo {
             height: 50px;
             display: flex;
@@ -651,27 +668,33 @@
                 background-image: url('fotos/BannerMobile1.png');
                 background-size: cover;
                 background-position: center;
-                padding: 160px 0 80px; /* Ajustado padding-top */
+                padding: 200px 0 80px; /* Ajustado padding-top */
                 margin-top: 70px;
                 align-items: center;
+                display: flex; 
+                justify-content: center;
             }
-            
+            .hero-content {
+                padding-top: 150px;
+            }
+
             /* Mobile para About Section */
             .about {
                 background-image: url('fotos/BannerMobile2.png');
                 background-position: center;
                 background-size: cover;
-                padding: 160px 0; /* Ajustado padding-top */
+                padding: 200px 0; /* Ajustado padding-top */
                 align-items: center;
             }
+
+            .about-content {
+                padding-top: 150px; 
+            }
             
-            /* Centralização em mobile */
             .hero-content, .about-content {
-                margin: 0 auto;
                 text-align: center;
             }
             
-            /* Mobile para Satisfaction Section */
             .satisfaction-container {
                 grid-template-columns: 1fr;
                 gap: 40px;
@@ -1071,6 +1094,37 @@
                 height: 35px;
             }
         }
+
+        
+        .service-card {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            visibility: hidden; /* Evita interações antes da animação */
+        }
+
+        .service-card.show {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+        }
+
+        .service-card:nth-child(1) { transition-delay: 0.1s; }
+        .service-card:nth-child(2) { transition-delay: 0.2s; }
+        .service-card:nth-child(3) { transition-delay: 0.3s; }
+        .service-card:nth-child(4) { transition-delay: 0.4s; }
+        .service-card:nth-child(5) { transition-delay: 0.5s; }
+        .service-card:nth-child(6) { transition-delay: 0.6s; }
+
+        @keyframes surgirDoNada {
+            0% {
+                opacity: 0;
+                transform: scale(0.3) translateY(10px);}
+            60% {
+                transform: scale(1);}
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);}}
     </style>
 </head>
 <body>
@@ -1126,7 +1180,7 @@
                         <li>Trabalhamos com as maiores e melhores seguradoras do país.</li>
                     </ul>
                     
-                    <a href="https://wa.me/5551997440406?text=Olá, vim através do site, gostaria de fazer uma cotação por favor!" class="btn" target="_blank" style="background-color: #25D366;">
+                    <a href="https://wa.me/5551997557587?text=Olá, vim através do site, gostaria de fazer uma cotação por favor!" class="btn" id="btn-whatsapp" target="_blank" style="background-color: #25D366;">
                     <i class="fab fa-whatsapp"></i> SIMULE AGORA
                 </a>
                 </div>
@@ -1284,7 +1338,7 @@
                 
                 <div class="location-map">
                     <a href="https://www.google.com/maps/place/Av.+da+Cavalhada,+3168+-+Cavalhada,+Porto+Alegre+-+RS,+91740-000,+Brasil/@-30.104131,-51.232021,16z/data=!4m6!3m5!1s0x9519825c8dec6381:0xecb9effc1ec6c2fe!8m2!3d-30.1040749!4d-51.229749!16s%2Fg%2F11nnkzz2rg?hl=pt-BR&entry=ttu" target="_blank" title="Abrir no Google Maps" >
-                        <!-- Mapa incorporado do Google Maps -->
+                        
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.683894757011!2d-51.2320207!3d-30.104131!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9519825c8dec6381%3A0xecb9effc1ec6c2fe!2sAv.%20da%20Cavalhada%2C%203168%20-%20Cavalhada%2C%20Porto%20Alegre%20-%20RS%2C%2091740-000%2C%20Brasil!5e0!3m2!1spt-BR!2sus!4v1737926400000!5m2!1spt-BR!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </a>
                 </div>
@@ -1300,7 +1354,7 @@
     <h2>SOLICITE UMA COTAÇÃO AGORA</h2>
     <p>Preencha os campos do formulário ao lado e nos informe qual é o seu interesse, entraremos em contato sobre sua cotação via WhatsApp.</p>
     <p><br>Se preferir <b>falar com um especialista agora</b>, clique no botão abaixo!</p>
-    <a href="https://wa.me/5551997440406?text=Olá, vim através do site, gostaria de fazer uma cotação por favor!" class="btn btn-primary" target="_blank" style="background-color: #25D366;">
+    <a href="https://wa.me/5551997557587?text=Olá, vim através do site, gostaria de fazer uma cotação por favor!" class="btn" id="btn btn-whatsapp" target="_blank" style="background-color: #25D366;">
     <i class="fab fa-whatsapp"></i> SIMULE AGORA
 </a>
 </div>
@@ -1385,6 +1439,26 @@
     </footer>
 
     <script>
+        //whatsapp botão
+        const whatsappButtons = document.querySelectorAll('.btn');
+
+const observerWhatsapp = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+            observerWhatsapp.unobserve(entry.target);
+        }
+    });
+}, {
+    threshold: 0.3
+});
+
+whatsappButtons.forEach(btn => {
+    observerWhatsapp.observe(btn);
+});
+
+
+
         // Função para animação de contagem dos números
         function animateCounter(element, finalValue, duration = 2000) {
             const startValue = 0;
@@ -1490,10 +1564,34 @@
             });
         });
         
+        document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.service-card');
+
+    // Configuração do Observer
+    const observerOptions = {
+        root: null, // usa a viewport
+        threshold: 0.2, 
+        rootMargin: "0px 0px -50px 0px" 
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {     
+                entry.target.classList.add('show');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Começa a observar cada card
+    cards.forEach(card => {
+        observer.observe(card);
+    });
+});
 
         // Formulário de cotação para WhatsApp
         const quoteForm = document.getElementById('quoteForm');
-        const whatsappNumber = '5551997440406'; 
+        const whatsappNumber = '5551997557587'; 
 
         // Máscara de telefone
         const phoneInput = document.getElementById('phone');
